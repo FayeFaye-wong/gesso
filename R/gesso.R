@@ -240,7 +240,7 @@ gesso.cv = function(G, E, Y, C=NULL, normalize=TRUE, normalize_response=FALSE,
                         mean_beta_g_nonzero=mean_beta_g_nonzero,
                         mean_beta_gxe_nonzero=mean_beta_gxe_nonzero) 
   
-
+  # best lambda
   lambda_min = result_table[lambda_min_index, 1:2]
   
   result$fold_ids = fold_ids
