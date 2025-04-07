@@ -6,6 +6,7 @@ auroc = function(score, bool) {
  return(1 - U / n1 / n2)
 }
 
+# checks the type and storage format
 get.matrix.type = function(G) {
   if (is(G, "matrix")) {
     if (typeof(G) != "double")
@@ -35,6 +36,9 @@ check.is.matrix = function(X, name) {
   }
 }
 
+
+#  generates a grid of lambda values (regularization strengths) for penalized regression modeling
+
 compute.grid = function(G, E, Y, C, normalize, family, grid_size, grid_min_ratio) {
   mattype_g = get.matrix.type(G)
   Y = as.double(Y)
@@ -46,6 +50,7 @@ compute.grid = function(G, E, Y, C, normalize, family, grid_size, grid_min_ratio
   }
   n = dim(G)[1]
   weights = rep(1, n) / n
+ # Calls the backend C++ function to compute λ_max, the largest value of lambda where all coefficients are zero.
   lambda_max = computeLambdaMax(G=G, E=E, Y=Y, C=C,
                                 weights=weights, normalize=normalize,
                                 family=family, mattype_g=mattype_g)
